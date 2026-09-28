@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102820">
+  <meta name="description" content="Guía botánica interactiva para árboles y plantas del campus universitario.">
+  <title>Guía arbolaria · Universidad</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23102820'/%3E%3Cpath d='M9 23V9h4l3 7 3-7h4v14h-4v-8l-3 6-3-6v8z' fill='%23edce74'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="plantas.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <div class="app" data-scene="0">
+    <figure class="backdrop" aria-hidden="true">
+      <img id="plant-image" src="imagenes/mango.jpg" alt="" width="1376" height="1760">
+    </figure>
+
+    <header class="topbar">
+      <a class="brand" href="#mango/inicio" aria-label="Guía botánica, inicio">
+        <span class="brand-mark">GB</span>
+        <span>GUÍA BOTÁNICA<small>Explora. Conoce. Cuida.</small></span>
+      </a>
+      <div class="header-actions">
+        <span class="edition">COLECCIÓN CAMPUS</span>
+        <button class="ghost" id="open-catalog" type="button">Catálogo</button>
+      </div>
+    </header>
+
+    <nav class="plant-nav" aria-label="Navegación entre plantas">
+      <button type="button" id="previous-plant" aria-label="Planta anterior">‹ Planta</button>
+      <label>
+        <span>Buscar árbol o planta</span>
+        <select id="plant-select"></select>
+      </label>
+      <button type="button" id="next-plant" aria-label="Planta siguiente">Planta ›</button>
+    </nav>
+
+    <nav class="chapters" aria-label="Secciones de la ficha">
+      <a href="#inicio" data-scene="0">Inicio</a>
+      <a href="#conocelo" data-scene="1">Conócelo</a>
+      <a href="#cuidados" data-scene="2">Cuidados</a>
+      <a href="#curiosidades" data-scene="3">Curiosidades</a>
+      <a href="#ficha" data-scene="4">Ficha</a>
+    </nav>
+
+    <main id="contenido" tabindex="-1">
+      <section class="scene hero active" data-key="inicio">
+        <p class="eyebrow" id="plant-order">Ficha 01</p>
+        <h1 id="plant-name">Mango</h1>
+        <p class="subtitle"><em id="plant-scientific">Mangifera indica</em></p>
+        <p class="lede" id="plant-intro"></p>
+        <div class="hero-actions">
+          <button class="cta" type="button" data-go="1">Ver información</button>
+          <a class="cta secondary" id="qr-link" href="#mango/inicio">Enlace para QR</a>
+        </div>
+      </section>
+
+      <section class="scene info" data-key="conocelo" hidden>
+        <p class="eyebrow">CONÓCELO</p>
+        <h2 id="section-title">Descripción</h2>
+        <p id="plant-description"></p>
+        <div class="cards" id="plant-traits"></div>
+      </section>
+
+      <section class="scene care" data-key="cuidados" hidden>
+        <p class="eyebrow">CUIDADOS</p>
+        <h2>Qué necesita</h2>
+        <div class="cards" id="plant-care"></div>
+      </section>
+
+      <section class="scene facts" data-key="curiosidades" hidden>
+        <p class="eyebrow">DATOS INTERESANTES</p>
+        <h2>Para contar frente al árbol</h2>
+        <div class="cards" id="plant-facts"></div>
+      </section>
+
+      <section class="scene sheet" data-key="ficha" hidden>
+        <p class="eyebrow">FICHA BIOLÓGICA</p>
+        <h2>Datos de identificación</h2>
+        <dl class="fact-list">
+          <div><dt>Nombre común</dt><dd id="sheet-common"></dd></div>
+          <div><dt>Nombre científico</dt><dd id="sheet-scientific"></dd></div>
+          <div><dt>Familia</dt><dd id="sheet-family"></dd></div>
+          <div><dt>Tipo</dt><dd id="sheet-type"></dd></div>
+          <div><dt>Estado</dt><dd id="sheet-status"></dd></div>
+        </dl>
+        <p class="note" id="sheet-note"></p>
+        <details class="sources">
+          <summary>Fuentes y referencias</summary>
+          <ul id="sheet-sources"></ul>
+        </details>
+      </section>
+    </main>
+
+    <footer class="controls" aria-label="Controles de presentación">
+      <button id="previous" type="button" aria-label="Sección anterior">←</button>
+      <div class="progress-wrap">
+        <span id="current">01</span><div class="progress"><span></span></div><span>05</span>
+      </div>
+      <button id="next" type="button" aria-label="Sección siguiente">→</button>
+    </footer>
+  </div>
+
+  <dialog id="catalog-dialog">
+    <form method="dialog" class="dialog-card">
+      <button class="close" aria-label="Cerrar catálogo">×</button>
+      <p class="eyebrow">ORDEN DE LA GUÍA</p>
+      <h2>Catálogo de árboles y plantas</h2>
+      <p>Este orden es el mismo que diste. Las fichas marcadas “por confirmar” necesitan foto o revisión en campo.</p>
+      <ol id="catalog-list"></ol>
+    </form>
+  </dialog>
+
+  <p id="announcement" class="sr-only" aria-live="polite"></p>
+</body>
+</html>
